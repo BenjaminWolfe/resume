@@ -171,7 +171,23 @@ a[href]:after { /* override weird href behavior */
 }
 .meat .sidebar img {
   padding-inline-end: 1em;
-  padding-block-start: 0.7em;
+  padding-block-start: 1em;
+  margin-block-end: 1.5em;
+}
+.meat .sidebar h4 {
+  font-size: 1em;
+  margin-block-start: 1.2em;
+  margin-block-end: 0.8em;
+}
+.meat .sidebar ul,
+.meat .sidebar p {
+  font-size: 0.85em;
+}
+.meat .sidebar ul {
+  padding-inline-start: 1.5em;
+}
+.meat .sidebar li {
+  list-style-type: disc;
 }
 
 .footer {
@@ -299,6 +315,21 @@ and orchestrated and coded all data flows.
 timeline <- image_read(here("images/timeline-1.png"))
 image_trim(timeline)
 ```
+
+#### Education
+* Wheaton College, Wheaton, Illinois
+* Bachelor of Arts in Spanish and Philosophy
+* Graduated with honors; advanced studies in Mexico
+
+#### Patent Pending & Awards
+Co-inventor:
+Apparatus & Method for Supplying Personalized Insurance Quotes.
+US Patent Application 14/681,931, filed April 8, 2015. 
+
+[CoverageMyWay][1]™ was 1 of 8
+[InformationWeek Elite 100 Business Innovation Award][2] winners in 2015,
+and won Esurance a place in the Elite 100 in 2016 as well.
+
 <!-- end meaty sidebar -->
 </div>
 <!-- end meat -->
@@ -309,14 +340,12 @@ image_trim(timeline)
 <!-- end footer left -->
 </div>
 <div class="sidebar">
-#### Education
-* Wheaton College, Wheaton, Illinois
-* Bachelor of Arts in Spanish and Philosophy
-* Graduated with honors; advanced studies in Mexico
-
 <!-- end footer sidebar -->
 </div>
 <!-- end footers -->
 </div>
 <!-- end page -->
 </div>
+
+[1]: https://web.archive.org/web/20160218214238/https://blog.esurance.com/esurance-introduces-coverage-my-way/
+[2]: https://www.informationweek.com/strategic-cio/executive-insights-and-innovation/esurance-puts-analytics-closer-to-the-customer/d/d-id/1319843
