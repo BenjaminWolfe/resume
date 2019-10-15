@@ -323,7 +323,8 @@ ggplot() +
       y     = start_date + weeks(16),
       label = paste(employer, cities, sep = "\n")
     ),
-    data = employers
+    fontface = "bold",
+    data     = employers
   ) +
   geom_segment( # positions as segments
     aes(
@@ -384,11 +385,12 @@ ggplot() +
       y     = start_date + weeks(12),
       label = label
     ),
-    color = "gray20",
-    hjust = 0,
-    vjust = 1,
-    angle = -90,
-    data  = teams_managed
+    color    = "gray20",
+    fontface = "bold",
+    hjust    = 0,
+    vjust    = 1,
+    angle    = -90,
+    data     = teams_managed
   ) +
   geom_segment( # direct reports as segments
     aes(

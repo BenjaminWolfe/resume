@@ -1,7 +1,7 @@
 ---
 params:
   title:  "Resume"
-  author: "Benjamin E. Wolfe"
+  author: "Benjamin Wolfe"
   date:   !r Sys.Date()
 title:  "`r params$title`"
 author: "`r params$author`"
@@ -118,9 +118,10 @@ a[href]:after { /* override weird href behavior */
   line-height: 1em;
 }
 .banner .center {
-  font-size: 2em;
+  font-size: 1.8em;
+  font-weight: bold;
   text-align: center;
-  padding-block-start: 0.25em;
+  padding-block-start: 0.4em;
 }
 .banner .left,
 .banner .right {
@@ -140,14 +141,58 @@ a[href]:after { /* override weird href behavior */
   text-align: center;
 }
 
-.sidebar {
-  position: absolute;
-  right: 0px;
+.meat {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.meat .left {
+  width: 60%;
+  padding-inline-start: 0.6em;
+  padding-inline-end: 1.5em;
+  margin-block-start: -0.7em;
+}
+.meat .left h3.employer {
+  font-size: 1.25em;
+  margin-block-start: 1.2em;
+  margin-block-end: 0.25em;
+}
+.meat .left h4.timing {
+  font-size: 1em;
+  margin-block-start: 0em;
+  margin-block-end: 1em;
+}
+.meat .left ul,
+.meat .left p {
+  font-size: 0.85em;
+}
+.meat .sidebar {
   width: 40%;
 }
-.sidebar img {
+.meat .sidebar img {
   padding-inline-end: 1em;
   padding-block-start: 0.7em;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.footer .left {
+  width: 60%);
+}
+.footer .sidebar {
+  width: 40%;
+}
+.footer .sidebar h4 {
+  font-size: 1em;
+  margin-block-start: 0em;
+  margin-block-end: 1em;
+}
+.footer .sidebar ul,
+.footer .sidebar p {
+  font-size: 0.85em;
 }
 ```
 
@@ -155,23 +200,99 @@ a[href]:after { /* override weird href behavior */
   <div class="banner">
   <div class="column left"><i class="fas fa-paper-plane"></i><a href="mailto:benjamin.e.wolfe@gmail.com">benjamin.e.wolfe@gmail.com</a>  
   <i class="fas fa-mobile-alt"><a href="tel:202-709-6533"></i>202.709.6533</a>
+  <!-- end banner left -->
   </div>
-  <div class="column center">`r str_to_upper(params$author)`</div>
+  <div class="column center">`r str_to_upper(params$author)`
+  <!-- end banner center -->
+  </div>
   <div class="column right">[linkedin.com/in/BenjaminWolfe](https://www.linkedin.com/in/BenjaminWolfe)<i class="fab fa-linkedin"></i>
   [\@BenjaminWolfe](https://twitter.com/BenjaminWolfe)<i class="fab fa-twitter"></i>
+  <!-- end banner right -->
   </div>
+<!-- end banner -->
 </div>
 
 <div class="intro">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</intro>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ut aliquip ex ea commodo consequat.
+<!-- end intro -->
+</div>
 
+<div class="meat">
+<div class="left">
+
+### Esurance {.employer}
+#### October 2011--current {.timing}
+
+_CoverageMyWay™_.
+I built this patent-pending, award-winning recommendation engine
+from concept through rollout in 43 states
+and oversaw the design and deployment of A/B tests.
+CoverageMyWay suggests coverage packages and add-ons for prospective customers
+in the online quote flow.
+Work involved coordinating with disparate groups: product management,
+legal compliance, copywriting, UX design, development, and QA.
+
+_Management_.
+Led 2 teams consecutively over 6 years:
+one built from the ground up, one acquired;
+one managed in person, one remote.
+Hired and mentored 6 data scientists / analysts,
+and cleared the way for 8 promotions.
+Established a bi-weekly "Analytics Masterclass" to share learnings from work.
+
+_Analytics Ecosystem_.
+Implemented [Heap Analytics](https://heap.io/)
+for existing customers' clickstream traffic;
+defined metrics and advocated for usage among partners.
+Championed analytics best practices and tools:
+[Jira](https://www.atlassian.com/software/jira) for workflow management,
+[git](https://git-scm.com/) and [Bitbucket](https://bitbucket.org/product)
+for version control,
+full access to [Tableau Server](https://www.tableau.com/products/server)
+for dashboarding.
+Created an internal CX Analytics blog, a code cookbook,
+and an internal R package repository.
+
+### Farmers Insurance Group {.employer}
+#### October 2006--October 2011 {.timing}
+
+_Automated reporting_.
+Ran all recruitment and promotion tracking for regional marketing office.
+Work initially involved heavy Excel usage exclusively.
+Consolidated data back-end first to MS Access and then to MS SQL Server;
+automated repetitive tasks with VBA.
+Also consulted on nationwide projects.
+
+_Agency and District Growth Dashboards_.
+This company-wide initiative gathered a host of previously disconnected KPIs
+into 360° views of the agent and district.
+I researched the data sources and providers,
+documented and conveyed findings to leadership,
+and orchestrated and coded all data flows.
+
+<!-- end meaty left -->
+</div>
 <div class="sidebar">
 ```{r timeline-magick, echo=FALSE}
 timeline <- image_read(here("images/timeline-1.png"))
 image_trim(timeline)
 ```
-
+<!-- end meaty sidebar -->
+</div>
+<!-- end meat -->
 </div>
 
+<div class="footer">
+<div class="left">
+<!-- end footer left -->
+</div>
+<div class="sidebar">
+<!-- end footer sidebar -->
+</div>
+<!-- end footers -->
+</div>
+<!-- end page -->
 </div>
