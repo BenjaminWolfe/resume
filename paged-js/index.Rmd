@@ -194,6 +194,12 @@ a[href]:after { /* override weird href behavior */
 .footer .sidebar p {
   font-size: 0.85em;
 }
+.footer .sidebar ul {
+  padding-inline-start: 1.5em;
+}
+.footer .sidebar li {
+  list-style-type: disc;
+}
 ```
 
 <div class="page">
@@ -227,7 +233,7 @@ ut aliquip ex ea commodo consequat.
 #### October 2011--current {.timing}
 
 _CoverageMyWay™_.
-I built this patent-pending, award-winning recommendation engine
+Built a patent-pending, award-winning recommendation engine
 from concept through rollout in 43 states
 and oversaw the design and deployment of A/B tests.
 CoverageMyWay suggests coverage packages and add-ons for prospective customers
@@ -255,6 +261,19 @@ full access to [Tableau Server](https://www.tableau.com/products/server)
 for dashboarding.
 Created an internal CX Analytics blog, a code cookbook,
 and an internal R package repository.
+
+_Deep-Dives_.
+Analyzed issues of relevance to customers and CX stakeholders.
+What DOI regulations cause the most friction for prospective customers?
+What kinds of policy transactions are customers unable to complete themselves?
+How will upcoming rate activity affect customer loyalty,
+and what can we do about it?
+Explored data, recommended metrics, wrote ETL jobs, designed dashboards,
+and offered learnings.
+
+_Experiment Consultation_.
+Consulted with stakeholders on experimentation,
+from design through data collection to interpretation and action.
 
 ### Farmers Insurance Group {.employer}
 #### October 2006--October 2011 {.timing}
@@ -290,6 +309,11 @@ image_trim(timeline)
 <!-- end footer left -->
 </div>
 <div class="sidebar">
+#### Education
+* Wheaton College, Wheaton, Illinois
+* Bachelor of Arts in Spanish and Philosophy
+* Graduated with honors; advanced studies in Mexico
+
 <!-- end footer sidebar -->
 </div>
 <!-- end footers -->
