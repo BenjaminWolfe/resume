@@ -138,7 +138,11 @@ a[href]:after { /* override weird href behavior */
 .intro {
   width: 100%;
   margin-block-start: 0.5em;
+  margin-block-end: 1em;
   text-align: center;
+}
+.intro p {
+  margin-block-end: 0em;
 }
 
 .meat {
@@ -166,6 +170,23 @@ a[href]:after { /* override weird href behavior */
 .meat .left p {
   font-size: 0.85em;
 }
+
+.meat .left .bottom h4 {
+  font-size: 1em;
+  margin-block-start: 1.2em;
+  margin-block-end: 0.8em;
+}
+.meat .left .bottom ul,
+.meat .left .bottom p {
+  font-size: 0.85em;
+}
+.meat .left .bottom ul {
+  padding-inline-start: 1.5em;
+}
+.meat .left .bottom li {
+  list-style-type: disc;
+}
+
 .meat .sidebar {
   width: 40%;
 }
@@ -235,10 +256,11 @@ a[href]:after { /* override weird href behavior */
 </div>
 
 <div class="intro">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-ut aliquip ex ea commodo consequat.
+Analytics leader with 12 years experience.
+Collaborative leader, innovator, thoughtful problem solver,
+
+articulate communicator, and champion of excellence in analytics.
+Looking to explore new challenges with you!
 <!-- end intro -->
 </div>
 
@@ -252,18 +274,17 @@ _CoverageMyWay™_.
 Built a patent-pending, award-winning recommendation engine
 from concept through rollout in 43 states
 and oversaw the design and deployment of A/B tests.
-CoverageMyWay suggests coverage packages and add-ons for prospective customers
-in the online quote flow.
-Work involved coordinating with disparate groups: product management,
-legal compliance, copywriting, UX design, development, and QA.
+CoverageMyWay suggests coverage packages and add-ons in the online quote flow.
+Coordinated with disparate groups:
+product management, legal compliance, copywriting, UX design, dev, and QA.
 
 _Management_.
 Led 2 teams consecutively over 6 years:
 one built from the ground up, one acquired;
 one managed in person, one remote.
-Hired and mentored 6 data scientists / analysts,
+Hired and mentored 6 data scientists / analysts
 and cleared the way for 8 promotions.
-Established a bi-weekly "Analytics Masterclass" to share learnings from work.
+Established a bi-weekly "Analytics Masterclass" to learn from our work.
 
 _Analytics Ecosystem_.
 Implemented [Heap Analytics](https://heap.io/)
@@ -280,16 +301,12 @@ and an internal R package repository.
 
 _Deep-Dives_.
 Analyzed issues of relevance to customers and CX stakeholders.
-What DOI regulations cause the most friction for prospective customers?
-What kinds of policy transactions are customers unable to complete themselves?
-How will upcoming rate activity affect customer loyalty,
-and what can we do about it?
-Explored data, recommended metrics, wrote ETL jobs, designed dashboards,
-and offered learnings.
-
-_Experiment Consultation_.
-Consulted with stakeholders on experimentation,
-from design through data collection to interpretation and action.
+What DOI regulations cause purchasers the most friction?
+What transactions are customers unable to complete themselves?
+How will upcoming rate activity affect customer loyalty?
+What can we do about it?
+Explored data, recommended KPIs, wrote ETL jobs, designed dashboards,
+shared learnings.
 
 ### Farmers Insurance Group {.employer}
 #### October 2006--October 2011 {.timing}
@@ -308,6 +325,22 @@ I researched the data sources and providers,
 documented and conveyed findings to leadership,
 and orchestrated and coded all data flows.
 
+<div class="bottom">
+#### Technical
+* Expert: R, SQL, Tableau, Excel
+* R: [tidyverse][6], [devtools][7], [pkgdown][8],
+  [blogdown][9], [bookdown][10], [drat][11], [TravisCI][12]
+* SQL: T-SQL, PL/SQL, PostGreSQL, Redshift, Hadoop, Hive
+
+#### Published Work
+* [Signs][3] (see [CRAN][4]) solves a simple problem of mathematical typography
+
+#### Other
+* Languages: English (native), Spanish (fluent)
+* [CliftonStrengths][5]: Learner, Maximizer, Input, Connectedness, Intellection
+
+<!-- end bottom of meaty left -->
+</div>
 <!-- end meaty left -->
 </div>
 <div class="sidebar">
@@ -349,3 +382,13 @@ and won Esurance a place in the Elite 100 in 2016 as well.
 
 [1]: https://web.archive.org/web/20160218214238/https://blog.esurance.com/esurance-introduces-coverage-my-way/
 [2]: https://www.informationweek.com/strategic-cio/executive-insights-and-innovation/esurance-puts-analytics-closer-to-the-customer/d/d-id/1319843
+[3]: https://benjaminwolfe.github.io/signs/
+[4]: https://cran.r-project.org/web/packages/signs
+[5]: https://www.gallup.com/cliftonstrengths
+[6]: https://www.tidyverse.org/
+[7]: https://devtools.r-lib.org/
+[8]: https://pkgdown.r-lib.org/
+[9]: https://bookdown.org/yihui/blogdown/
+[10]: https://bookdown.org/yihui/bookdown/
+[11]: https://github.com/eddelbuettel/drat
+[12]: https://travis-ci.org/
