@@ -171,6 +171,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 timeline <- image_read(here("images/timeline-1.png"))
 image_trim(timeline)
 ```
+
 </div>
 
 </div>

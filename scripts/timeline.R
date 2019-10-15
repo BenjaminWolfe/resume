@@ -17,7 +17,6 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 library(here)
-library(dichromat)
 library(cowplot)
 library(extrafont)
 
@@ -26,43 +25,21 @@ library(extrafont)
 #' For another, it allows me to commit dates and events to paper
 #' that I might otherwise forget as I move on in my career.
 today <- as.character(Sys.Date())
-state_colors <- dichromat::colorschemes$SteppedSequential.5
 
 #' Locations:
 #' 
 #' * Most dates are approximate.
-#' * `dichromat` colors chosen for colorblind readers.
 locations <- tribble(
-  ~id,  ~start_date,    ~end_date,      ~location,         ~region, ~color,
-    1, "1996-08-01", "2000-12-22",  "Wheaton, IL",      "Illinois",      2,
-    2, "2004-08-01", "2006-06-01",   "Nashua, NH", "New Hampshire",      3,
-    3, "2006-06-15", "2015-06-23", "Bay Area, CA",    "California",      5,
-    4, "2015-06-30",        today,   "Austin, TX",         "Texas",      4,
+  ~id,  ~start_date,    ~end_date,      ~location,
+    1, "1996-08-01", "2000-12-22",  "Wheaton, IL",
+    2, "2004-08-01", "2006-06-01",   "Nashua, NH",
+    3, "2006-06-15", "2015-06-23", "Bay Area, CA",
+    4, "2015-06-30",        today,   "Austin, TX",
 ) %>% 
   mutate_at(
     vars(ends_with("_date")),
     ymd
   ) %>% 
-  mutate(
-    map_fills = state_colors[(color - 1) * 5 + 4],
-    saturated = state_colors[(color - 1) * 5 + 2]
-  ) %>% 
-  print()
-
-work_locations <- tail(locations, -1) %>% 
-  print()
-
-#' Map and timeline colors:
-map_fills <- setNames(
-  c(locations[["map_fills"]], "gray" ),
-  c(locations[["region"   ]], "Other")
-) %>% 
-  print()
-
-saturated <- setNames(
-  c(locations[["saturated"]], "white"),
-  c(locations[["region"   ]], "Other")
-) %>% 
   print()
 
 #' Employers:
@@ -194,7 +171,7 @@ positions_managed <-
 ) %>% 
   print()
 
-#' Individuals I've managed, anonymized with dates, positions, and major events.
+#' Direct reports, anonymized, with dates, positions, and major events.
 #' I figure it's worthwhile to get this information as specifically as possible,
 #' since I won't always be able to pull this up quite as easily. :)
 people_managed <- 
@@ -241,31 +218,6 @@ people_managed <-
   ) %>% 
   print()
 
-#' Legend of locations?
-#' (Maybe tie colors to other timeline & education? Maybe.)
-#' It is nice, and refreshing, to get a sense of _geography_ from a resume.
-#' However, is that something you really need to allocate page space to?
-#+ map
-map_data("state") %>% 
-  mutate(
-    region = region %>% 
-      str_to_title() %>% 
-      fct_other(keep = locations[["region"]])
-  ) %>% 
-  ggplot() +
-  geom_polygon(
-    aes(x = long, y = lat, group = group, fill = region),
-    color = "white",
-    size = 1
-  ) +
-  scale_fill_manual(values = map_fills) +
-  coord_map(
-    projection = "albers",
-    lat0 = 39,
-    lat1 = 45
-  ) +
-  theme_nothing()
-
 #' Notes on graphics...
 #' 
 #' I tried for rounded rectangles:
@@ -276,13 +228,15 @@ map_data("state") %>%
 #' But they didn't work right with a reversed y-axis.
 #' 
 #' Here's the StackOverflow link
-#' to [flip the y-axis](https://stackoverflow.com/a/43626186/573332).
+#' to [flip a date y-axis](https://stackoverflow.com/a/43626186/573332).
 #' 
 #' Also under consideration...
 #' When I started working with what languages, and what projects I worked on?
 #' Awards, etc.?
 #' For the management section, include a concise summary, perhaps?
 #' 2 teams, 6 hires, 5 promoted?
+#' Not sure what I think of my legend placement. Good for now.
+#' Kind of like the idea of laying them horizontally at the top.
 #+ timeline, fig.width = 385 / 96, fig.height = 799 / 96, dpi = 96
 # reverse date transformation
 c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
@@ -301,7 +255,7 @@ c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
 rev_date <- c_trans("reverse", "date")
 
 # graphics parameters
-timeline_x         <- 0.20
+timeline_x         <- 0.16
 timeline_to_labels <- 0.03
 timeline_to_team   <- 0.06
 team_spacing       <- 0.05
@@ -343,9 +297,6 @@ ggplot() +
     position = "right"
   ) +
   scale_alpha_identity() +
-  scale_fill_manual(
-    values = saturated
-  ) +
   scale_shape_manual(
     values = c(
       start             = 21,
@@ -369,7 +320,7 @@ ggplot() +
   geom_text( # employer names
     aes(
       x     = right_edge - box_to_name,
-      y     = start_date + weeks(11),
+      y     = start_date + weeks(16),
       label = paste(employer, cities, sep = "\n")
     ),
     data = employers
@@ -406,13 +357,13 @@ ggplot() +
   ) +
   geom_text( # position names
     aes(
-      x     = timeline_x - timeline_to_labels,
-      y     = padded_start + 
-                case_when(
-                  id == 2  ~  weeks(3),
-                  id == 10 ~ -weeks(2),
-                  TRUE     ~  weeks(0)
-                ),
+      x = timeline_x - timeline_to_labels,
+      y = padded_start + 
+            case_when(
+              id == 2 ~  weeks(3),
+              id == 7 ~ -weeks(3),
+              TRUE    ~  weeks(0)
+            ),
       label = position
     ),
     data = pad_ends(positions)
@@ -473,4 +424,46 @@ ggplot() +
       mutate(
         date = date +
           if_else(date %in% teams_managed$start_date, weeks(6), weeks(0)))
+  ) +
+  geom_segment( # legend: segments
+    aes(
+      x    = timeline_x + timeline_to_team + team_spacing * 0.5,
+      xend = timeline_x + timeline_to_team + team_spacing * 1.25,
+      y    = y,
+      yend = y
+    ),
+    data = tibble(y = ymd(c("2008-07-01", "2008-11-01")))
+  ) +
+  geom_point( # legend: segment endpoints
+    aes(
+      x     = timeline_x + timeline_to_team + team_spacing * 0.5,
+      y     = y,
+      shape = type
+    ),
+    color  = "gray10",
+    fill   = "gray",
+    data   = tibble(
+      y    = ymd(c("2008-07-01", "2008-11-01")),
+      type = c("hired", "promoted")
+    )
+  ) +
+  geom_text( # legend: labels
+    aes(
+      x     = timeline_x + timeline_to_team + team_spacing * 1.3,
+      y     = y,
+      label = label
+    ),
+    hjust = 0,
+    vjust = 0.3,
+    data    = tibble(
+      y     = ymd(c("2008-07-01", "2008-11-01")),
+      label = c("new hire", "promotion / lateral move")
+    )
+  ) +
+  annotate( # explain direct reports
+    "text",
+    x     = timeline_x + timeline_to_team + team_spacing * 0.5,
+    y     = ymd("2012-12-01"),
+    label = "Direct Reports",
+    hjust = 0
   )
