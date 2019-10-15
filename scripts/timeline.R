@@ -9,7 +9,8 @@
 #' 
 #+ message=FALSE
 knitr::opts_chunk$set(
-  fig.path = "../images/"
+  fig.path = "../images/",
+  dev.args = list(bg="transparent")
 )
 
 library(tidyverse)
@@ -331,7 +332,9 @@ ggplot() +
       lineheight    = 0.9,
       margin        = margin(0, 10, 0, -7),
       inherit.blank = FALSE
-    )
+    ),
+    panel.background = element_rect(fill = "transparent", color = NA),
+    plot.background  = element_rect(fill = "transparent", color = NA)
   ) +
   scale_y_continuous( # scales: y, alpha, fill, shape
     trans    = rev_date,

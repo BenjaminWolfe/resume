@@ -6,13 +6,27 @@ output:
   pagedown::html_resume:
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: false
+    css: "index_files/custom/resume.css"
 ---
+
+```{r notes, eval=FALSE, include=FALSE}
+# resume created with pagedown:
+install.packages("pagedown")
+
+# to serve (does not render properly otherwise):
+servr::httw(
+  dir     = "pagedown",
+  watch   = "pagedown",
+  pattern = "\\.html$",
+  daemon  = TRUE
+)
+```
 
 Aside
 ================================================================================
 
 
-![Lijia Yu](https://avatars1.githubusercontent.com/u/895125?s=400&v=4){width=80%}
+![Benjamin Wolfe](index_files/images/timeline-1.png){width=100%}
 
 
 Contact Info {#contact}
@@ -46,7 +60,7 @@ Last updated on `r Sys.Date()`.
 Main
 ================================================================================
 
-Lijia Yu {#title}
+Benjamin Wolfe {#title}
 --------------------------------------------------------------------------------
 
 ### Currently searching for a PhD student position

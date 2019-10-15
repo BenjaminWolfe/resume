@@ -1,0 +1,176 @@
+---
+params:
+  title:  "Resume"
+  author: "Benjamin E. Wolfe"
+  date:   !r Sys.Date()
+title:  "`r params$title`"
+author: "`r params$author`"
+date:   "`r params$date`"
+output:
+  html_document:
+    css: css/custom.css
+    includes:
+      in_header: headers.html
+---
+
+```{r notes, eval=FALSE, include=FALSE}
+# resume created with pagedown:
+install.packages("pagedown")
+
+# to serve (does not render properly otherwise):
+servr::httw(
+  dir     = "paged-js",
+  watch   = "paged-js",
+  pattern = "\\.html$",
+  daemon  = TRUE
+)
+```
+
+```{r setup, echo=FALSE, message=FALSE}
+library(stringr)
+library(magick)
+library(here)
+```
+
+```{js, echo=FALSE}
+// wait for an element to exist: https://gist.github.com/chrisjhoughton/7890303
+// this became necessary for the workaround below when I added fontawesome
+let wait_for_element = function(selector, callback) {
+  if (jQuery(selector).length) {
+    callback();
+  } else {
+    setTimeout(function() {
+      wait_for_element(selector, callback);
+    }, 100);
+  }
+};
+
+// workaround: viewer settings keep getting overwritten by paged.js
+// this removes the offending CSS when the page loads
+$('document').ready( function() {
+
+  // strings we'll be fixing
+  const delete_this = 
+    'background:'         + '0 0!important;' + 
+    '-webkit-box-shadow:' + 'none!important;' + 
+    'box-shadow:'         + 'none!important';
+  const and_replace_this =
+    'body{'
+      + 'font-family:'      + '"Helvetica Neue",Helvetica,Arial,sans-serif;'
+      + 'font-size:'        + '14px;'
+      + 'line-height:'      + '1.42857143;'
+      + 'color:'            + '#333;'
+      + 'background-color:' + '#fff'
+    + '}';
+  const with_this =
+    'body{'
+      + 'font-family:' + '"Helvetica Neue",Helvetica,Arial,sans-serif;'
+      + 'font-size:'   + '14px;'
+      + 'line-height:' + '1.42857143;'
+      + 'color:'       + '#333'
+    + '}';
+
+  const selector = 
+      'head > style'
+    + ':contains("base64")'
+    + ':not(:contains("--pagedjs-width"))'
+
+  wait_for_element(selector, function() {
+    // this should only match one <style> element
+    let crazy_long_style_element = $(selector);
+    
+    // perform the incision
+    const new_css = crazy_long_style_element[0]
+      .innerText
+      .replace(delete_this, '')
+      .replace(and_replace_this, with_this);
+  
+    // out with the old, in with the new
+    crazy_long_style_element.remove();
+    $('head')
+      .append(
+        '<style'
+        + ' type="text/css"'
+        + ' data-pagedjs-inserted-styles="true"'
+        + '>'
+          + new_css
+      + '</style>'
+      );
+  });
+});
+```
+
+```{css, echo=FALSE}
+a[href]:after { /* override weird href behavior */
+  display: none !important;
+}
+
+#header { display: none; }
+
+.banner {
+  height: 5em;
+  margin-block-start: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+.banner .column {
+  width: 32%;
+  line-height: 1em;
+}
+.banner .center {
+  font-size: 2em;
+  text-align: center;
+  padding-block-start: 0.25em;
+}
+.banner .left,
+.banner .right {
+  padding-block-start: 0.8em;
+  line-height: 1.25em;
+}
+.banner .left {
+  text-align: left;
+}
+.banner .right {
+  text-align: right;
+}
+
+.intro {
+  width: 100%;
+  margin-block-start: 0.5em;
+  text-align: center;
+}
+
+.sidebar {
+  position: absolute;
+  right: 0px;
+  width: 40%;
+}
+.sidebar img {
+  padding-inline-end: 1em;
+  padding-block-start: 0.7em;
+}
+```
+
+<div class="page">
+  <div class="banner">
+  <div class="column left"><i class="fas fa-paper-plane"></i><a href="mailto:benjamin.e.wolfe@gmail.com">benjamin.e.wolfe@gmail.com</a>  
+  <i class="fas fa-mobile-alt"><a href="tel:202-709-6533"></i>202.709.6533</a>
+  </div>
+  <div class="column center">`r str_to_upper(params$author)`</div>
+  <div class="column right">[linkedin.com/in/BenjaminWolfe](https://www.linkedin.com/in/BenjaminWolfe)<i class="fab fa-linkedin"></i>
+  [\@BenjaminWolfe](https://twitter.com/BenjaminWolfe)<i class="fab fa-twitter"></i>
+  </div>
+</div>
+
+<div class="intro">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</intro>
+
+<div class="sidebar">
+```{r timeline-magick, echo=FALSE}
+timeline <- image_read(here("images/timeline-1.png"))
+image_trim(timeline)
+```
+</div>
+
+</div>
