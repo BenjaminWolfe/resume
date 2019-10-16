@@ -1,0 +1,85 @@
+/*
+  from github: rstudio/pagedown/blob/master/inst/resources/css/resume.css
+  streamlined for my needs (no gray sidebar for example)
+*/
+
+/* size, orientation, margins, page color */
+@page {
+  size: letter portrait;
+  margin: 0.25in 0.25in 0.25in 0.25in;
+  background: white;
+}
+
+/* page dimensions and viewer spacing */
+:root {
+  
+  /* page dimensions: first 3 should match @page query above */
+  --page-width:   8.5in;
+  --margin-right: 0.25in;
+  --margin-left:  0.25in;
+  --content-width: calc(
+      var(--page-width) -
+      var(--margin-right) -
+      var(--margin-left)
+    );
+  
+  /* paged.js viewer */
+  --viewer-pages-spacing: 12px;
+}
+
+#header { display: none; } /* hide R markdown headers */
+
+html {
+  font-size: 12pt;
+}
+
+body {
+  width: var(--content-width);
+  font-family: "Open Sans" sans-serif;
+  font-weight: 300;
+  line-height: 1.3;
+  color: #444;
+  hyphens: auto;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+}
+
+a[href]:after { /* override weird href behavior */
+  display: none !important;
+}
+
+/* paged.js viewer */
+@media screen {
+  body {
+    background-color: #dcdcdc;
+    margin: 0; /* for mobile */
+    width: calc(
+      var(--pagedjs-width) + 2 * var(--viewer-pages-spacing)
+    ); /* for mobile */
+  }
+   .pagedjs_pages {
+    max-width: var(--pagedjs-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+   .pagedjs_page {
+    box-shadow: 0 0 calc(0.66667 * var(--viewer-pages-spacing)) #313131;
+    margin: var(--viewer-pages-spacing) 0;
+  }
+}
+
+@media screen and (min-width: 8.5in) {
+  /* not mobile */
+  body {
+    margin: auto;
+    width: unset;
+  }
+}

@@ -9,9 +9,3 @@ see [scripts/timeline.html](scripts/timeline.html).
 
 To re-create, run [scripts/timeline.R](scripts/timeline.R),
 followed by [paged-js/index.Rmd](paged-js/index.Rmd).
-
-## To Do
-
-I left the CSS in disarray, with plenty of cruft
-from the original `pagedown` resume template.
-I would certainly enjoy cleaning that up and making it more presentable.
