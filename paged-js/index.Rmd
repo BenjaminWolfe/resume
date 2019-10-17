@@ -119,7 +119,7 @@ $('document').ready( function() {
 
 <div class="summary">
 Analytics leader with 12 years experience.
-Collaborative leader, innovator, thoughtful problem solver,
+Curious learner, supportive manager, thoughtful problem solver,
 
 articulate communicator, and champion of excellence in analytics.
 Looking to explore new challenges with you!
