@@ -1,0 +1,60 @@
+/*
+  from github: rstudio/pagedown/blob/master/inst/resources/css/resume.css
+  streamlined for my needs (no gray sidebar for example)
+*/
+
+/* size, orientation, margins, page color */
+@page {
+  size: letter portrait;
+  margin: 0.25in 0.25in 0.25in 0.25in;
+  background: white;
+}
+
+#header { display: none; } /* hide R markdown headers */
+
+html {
+  font-size: 12pt;
+}
+
+body {
+  font-family: "Open Sans" sans-serif;
+  font-weight: 300;
+  hyphens: auto;
+}
+
+a[href]:after { /* override weird href behavior */
+  display: none !important;
+}
+
+/* paged.js viewer */
+:root {
+  --viewer-pages-spacing: 12px;
+}
+
+@media screen {
+  body {
+    background-color: #dcdcdc;
+    margin: 0; /* for mobile */
+    width: calc(
+      var(--pagedjs-width) + 2 * var(--viewer-pages-spacing)
+    ); /* for mobile */
+  }
+   .pagedjs_pages {
+    max-width: var(--pagedjs-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+   .pagedjs_page {
+    box-shadow: 0 0 calc(0.66667 * var(--viewer-pages-spacing)) #313131;
+    margin: var(--viewer-pages-spacing) 0;
+  }
+}
+
+@media screen and (min-width: 8.5in) {
+  /* not mobile */
+  body {
+    margin: auto;
+    width: unset;
+  }
+}

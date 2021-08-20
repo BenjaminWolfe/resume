@@ -1,0 +1,251 @@
+---
+params:
+  title:  "Resume"
+  author: "Benjamin Wolfe"
+  date:   !r Sys.Date()
+title:  "`r params$title`"
+author: "`r params$author`"
+date:   "`r params$date`"
+output:
+  html_document:
+    css: ["css/page.css", "css/classes.css"]
+    includes:
+      in_header: headers.html
+---
+
+```{r notes, eval=FALSE, include=FALSE}
+# resume was created with paged.js,
+# inspired by the `pagedown` resume template:
+install.packages("pagedown")
+
+# to serve locally (may not render properly otherwise):
+servr::httw(
+  dir     = "paged-js",
+  watch   = "paged-js",
+  pattern = "\\.html$",
+  daemon  = TRUE
+)
+```
+
+```{r setup, echo=FALSE, message=FALSE}
+library(stringr)
+library(magick)
+library(here)
+```
+
+```{js, echo=FALSE}
+// wait for an element to exist: https://gist.github.com/chrisjhoughton/7890303
+// this became necessary for the workaround below when I added fontawesome
+let wait_for_element = function(selector, callback) {
+  if (jQuery(selector).length) {
+    callback();
+  } else {
+    setTimeout(function() {
+      wait_for_element(selector, callback);
+    }, 100);
+  }
+};
+
+// workaround: viewer settings keep getting overwritten by paged.js
+// this removes the offending CSS when the page loads
+$('document').ready( function() {
+
+  // strings we'll be fixing
+  const delete_this = 
+    'background:'         + '0 0!important;' + 
+    '-webkit-box-shadow:' + 'none!important;' + 
+    'box-shadow:'         + 'none!important';
+  const and_replace_this =
+    'body{'
+      + 'font-family:'      + '"Helvetica Neue",Helvetica,Arial,sans-serif;'
+      + 'font-size:'        + '14px;'
+      + 'line-height:'      + '1.42857143;'
+      + 'color:'            + '#333;'
+      + 'background-color:' + '#fff'
+    + '}';
+  const with_this =
+    'body{'
+      + 'font-family:' + '"Helvetica Neue",Helvetica,Arial,sans-serif;'
+      + 'font-size:'   + '14px;'
+      + 'line-height:' + '1.42857143;'
+      + 'color:'       + '#333'
+    + '}';
+
+  const selector = 
+      'head > style'
+    + ':contains("base64")'
+    + ':not(:contains("--pagedjs-width"))'
+
+  wait_for_element(selector, function() {
+    // this should only match one <style> element
+    let crazy_long_style_element = $(selector);
+    
+    // perform the incision
+    const new_css = crazy_long_style_element[0]
+      .innerText
+      .replace(delete_this, '')
+      .replace(and_replace_this, with_this);
+  
+    // out with the old, in with the new
+    crazy_long_style_element.remove();
+    $('head')
+      .append(
+        '<style'
+        + ' type="text/css"'
+        + ' data-pagedjs-inserted-styles="true"'
+        + '>'
+          + new_css
+      + '</style>'
+      );
+  });
+});
+```
+
+<div class="page">
+  <div class="basics">
+  <div class="column left"><i class="fas fa-paper-plane"></i><a href="mailto:benjamin.e.wolfe@gmail.com">benjamin.e.wolfe@gmail.com</a>  
+  <i class="fas fa-mobile-alt"><a href="tel:202-709-6533"></i>202.709.6533</a>
+  <!-- end basics left column -->
+  </div>
+  <div class="column center">`r str_to_upper(params$author)`
+  <!-- end basics center column -->
+  </div>
+  <div class="column right">[linkedin.com/in/BenjaminWolfe][1]<i class="fab fa-linkedin"></i>
+  [\@BenjaminWolfe][2]<i class="fab fa-twitter"></i>
+  <!-- end basics right column -->
+  </div>
+<!-- end basics -->
+</div>
+
+<div class="summary">
+Analytics leader with 12 years experience.
+Curious learner, supportive manager, thoughtful problem solver,
+
+articulate communicator, and champion of excellence in analytics.
+Looking to explore new challenges with you!
+<!-- end summary -->
+</div>
+
+<div class="details">
+<div class="left">
+
+### Esurance {.employer}
+#### October 2011--current {.timing}
+
+_CoverageMyWay™_.
+Built a patent-pending, award-winning recommendation engine
+from concept through rollout in 43 states
+and oversaw the design and deployment of A/B tests.
+CoverageMyWay suggests coverage packages and add-ons in the online quote flow.
+Coordinated with disparate groups:
+product management, legal compliance, copywriting, UX design, dev, and QA.
+
+_Management_.
+Led 2 teams consecutively over 6 years:
+one built from the ground up, one acquired;
+one managed in person, one remote.
+Hired and mentored 6 data scientists / analysts
+and cleared the way for 8 promotions.
+Established a bi-weekly "Analytics Masterclass" to learn from our work.
+
+_Analytics Ecosystem_.
+Implemented [Heap Analytics][3] for existing customers' clickstream traffic;
+defined metrics and advocated for usage among partners.
+Championed analytics best practices and tools:
+[Jira][4] for workflow management,
+[git][5] and [Bitbucket][6] for version control,
+full access to [Tableau Server][7] for dashboarding.
+Created an internal CX Analytics blog, a code cookbook,
+and an internal R package repository.
+
+_Deep-Dives_.
+Analyzed issues of relevance to customers and CX stakeholders.
+What DOI regulations cause purchasers the most friction?
+What transactions are customers unable to complete themselves?
+How will upcoming rate activity affect customer loyalty?
+What can we do about it?
+Explored data, recommended KPIs, wrote ETL jobs, designed dashboards,
+shared learnings.
+
+### Farmers Insurance Group {.employer}
+#### October 2006--October 2011 {.timing}
+
+_Automated reporting_.
+Ran all recruitment and promotion tracking for regional marketing office.
+Work initially involved heavy Excel usage exclusively.
+Consolidated data back-end first to MS Access and then to MS SQL Server;
+automated repetitive tasks with VBA.
+Also consulted on nationwide projects.
+
+_Agency and District Growth Dashboards_.
+This company-wide initiative gathered a host of previously disconnected KPIs
+into 360° views of the agent and district.
+I researched the data sources and providers,
+documented and conveyed findings to leadership,
+and orchestrated and coded all data flows.
+
+<div class="bottom">
+#### Technical
+* Expert: R, SQL, Tableau, Excel
+* R: [tidyverse][8], [devtools][9], [pkgdown][10],
+  [blogdown][11], [bookdown][12], [drat][13], [TravisCI][14]
+* SQL: T-SQL, PL/SQL, PostGreSQL, Redshift, Hadoop, Hive
+
+#### Published Work
+* [Signs][15] (see [CRAN][16]) solves a simple problem of mathematical typography
+
+#### Other
+* Languages: English (native), Spanish (fluent)
+* [CliftonStrengths][17]: Learner, Maximizer, Input, Connectedness, Intellection
+
+<!-- end bottom of details left column -->
+</div>
+<!-- end details left column -->
+</div>
+<div class="sidebar">
+```{r timeline-magick, echo=FALSE}
+# timeline created by rendering ../scripts/timeline.R (see ../README.md)
+timeline <- image_read(here("images/timeline-1.png"))
+image_trim(timeline)
+```
+
+#### Education
+* Wheaton College, Wheaton, Illinois
+* Bachelor of Arts in Spanish and Philosophy
+* Graduated with honors; advanced studies in Mexico
+
+#### Patent Pending & Awards
+Co-inventor:
+Apparatus & Method for Supplying Personalized Insurance Quotes.
+US Patent Application 14/681,931, filed April 8, 2015. 
+
+[CoverageMyWay][18]™ was 1 of 8
+[InformationWeek Elite 100 Business Innovation Award][19] winners in 2015,
+and won Esurance a place in the Elite 100 in 2016 as well.
+
+<!-- end details sidebar column -->
+</div>
+<!-- end details -->
+</div>
+<!-- end page -->
+</div>
+
+[1]: https://www.linkedin.com/in/BenjaminWolfe
+[2]: https://twitter.com/BenjaminWolfe
+[3]: https://heap.io/
+[4]: https://www.atlassian.com/software/jira
+[5]: https://git-scm.com/
+[6]: https://bitbucket.org/product
+[7]: https://www.tableau.com/products/server
+[8]: https://www.tidyverse.org/
+[9]: https://devtools.r-lib.org/
+[10]: https://pkgdown.r-lib.org/
+[11]: https://bookdown.org/yihui/blogdown/
+[12]: https://bookdown.org/yihui/bookdown/
+[13]: https://github.com/eddelbuettel/drat
+[14]: https://travis-ci.org/
+[15]: https://benjaminwolfe.github.io/signs/
+[16]: https://cran.r-project.org/web/packages/signs
+[17]: https://www.gallup.com/cliftonstrengths
+[18]: https://web.archive.org/web/20160218214238/https://blog.esurance.com/esurance-introduces-coverage-my-way/
+[19]: https://www.informationweek.com/strategic-cio/executive-insights-and-innovation/esurance-puts-analytics-closer-to-the-customer/d/d-id/1319843
