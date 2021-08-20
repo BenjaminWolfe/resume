@@ -83,14 +83,33 @@
 /* just the employer-name headers */
 .details .left h3.employer {
   font-size: 1.25em;
-  margin-block-start: 1.2em;
+  margin-block-start: 1em;
   margin-block-end: 0.25em;
+}
+.details .left .flex-container {
+  display: flex;
+}
+.details .left .flex-child {
+  display: flex;
+  flex: auto;
+  justify-content: flex-end;
+}
+.details .left .flex-child:first-child {
+  display: revert;
+  margin-right: 20px;
 }
 /* just the "from when to when" headers */
 .details .left h4.timing {
   font-size: 1em;
   margin-block-start: 0em;
   margin-block-end: 1em;
+}
+/* just the "titles" headers */
+.details .left h5.titles {
+  font-size: 0.85em;
+  font-weight: normal;
+  margin-block-start: 2.1em;
+  text-align: right;
 }
 
 /* bottom section of the left column */
@@ -110,6 +129,7 @@
 /* sidebar column of details */
 .details .sidebar {
   width: 40%;
+  padding-left: 2.8em;
 }
 .details .sidebar img {
   padding-inline-end: 1em;
