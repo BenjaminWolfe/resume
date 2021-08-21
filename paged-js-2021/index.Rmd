@@ -116,11 +116,13 @@ $('document').ready( function() {
 </div>
 
 <div class="summary">
-Analytics leader with 12 years experience.
-Curious learner, supportive manager, articulate communicator,
+Cross-functional data product owner and engineer
+with 15 years in the insurance space  
+across marketing, product, and customer experience
+in personal and commercial lines.  
+Equally at home writing code, establishing best practices,
+or building a data science team.
 
-collaborative problem solver, and champion of excellence in analytics.
-Looking to explore new challenges with you!
 <!-- end summary -->
 </div>
 
@@ -141,7 +143,7 @@ facilitated conversations among all impacted partners and internal stakeholders.
 Established best practices and reduced technical debt.
 
 _Solutions Design_.
-Developed a rating engine used by non-technical stakeholders.
+Developed a rating engine used by actuaries and PMs.
 
 _Data Engineering_.
 Wrote, productionalized, and maintained data pipelines.
@@ -198,18 +200,6 @@ I researched data sources and providers,
 conveyed findings to executive leadership,
 and orchestrated & coded all data flows.
 
-<div class="bottom">
-#### Published Work
-* The [signs][signs] package on [CRAN][cran] solves a problem
-  of mathematical typography
-
-#### Education
-* Wheaton College, Wheaton, Illinois
-* Bachelor of Arts in Spanish and Philosophy
-* Graduated with honors; advanced studies in Mexico
-
-<!-- end bottom of details left column -->
-</div>
 <!-- end details left column -->
 </div>
 <div class="sidebar">
@@ -219,25 +209,39 @@ and orchestrated & coded all data flows.
 * _Web Analytics_: Heap Analytics, GA
 * _Data Science, ML, ETL_: Tidymodels, Tidyverse, Pandas/Numpy, Airflow, Docker
 * _Data Visualization_: Tableau, Looker, Shiny
-* _Databases_: Snowflake, Redshift, SQL Server
+* _Databases_: Snowflake, Redshift, MS SQL
 * _Rules Engines_: JBoss Drools
 * _Languages_: Python, R, SQL, HTML/CSS/JS/Sass
+
+#### Strengths
+Resourceful · Collaborative · Detail-Oriented  
+Curious · Optimistic · Systematic
 
 #### Patent Pending & Awards
 Co-inventor:
 Apparatus & Method for Supplying Personalized Insurance Quotes.
-US Patent Application 14/681,931, filed April 8, 2015. 
+US Patent Application 14/681,931, filed 4/8/15. 
 
 [CoverageMyWay][cmw]™ was 1 of 8
 [InformationWeek Elite 100 Business Innovation Award][infowk] winners in '15
 and won Esurance a place in the Elite 100 in '16.
+
+#### Published Work
+The [signs][signs] package on [CRAN][cran] solves a problem
+of mathematical typography.
+
+#### Education
+* Wheaton College, Wheaton, Illinois
+* Bachelor of Arts in Spanish & Philosophy
+* Graduated with honors; advanced studies in Mexico City and Oaxaca
 
 #### Spoken Languages
 * English (native)
 * Spanish (fluent)
 
 #### Credits
-CV created with [paged.js][pagedjs], inspired by RStudio's [pagedown][pagedown] package.
+CV styled with [paged.js][pagedjs];
+design inspired by RStudio's [pagedown][pagedown] package.
 
 <!-- end details sidebar column -->
 </div>
